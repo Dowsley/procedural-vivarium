@@ -1,8 +1,13 @@
-[gd_scene load_steps=2 format=3 uid="uid://bif56bhg6uym3"]
+[gd_scene load_steps=3 format=3 uid="uid://bif56bhg6uym3"]
 
 [ext_resource type="PackedScene" uid="uid://cbr76dv68oqtt" path="res://src/koi.tscn" id="1_i28ue"]
+
+[sub_resource type="Curve" id="Curve_5kr7r"]
 
 [node name="Game" type="Node2D"]
 
 [node name="Koi" parent="." instance=ExtResource("1_i28ue")]
 position = Vector2(734, 542)
+num_segments = 10
+radius = 40
+size_curve = SubResource("Curve_5kr7r")
