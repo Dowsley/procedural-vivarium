@@ -1,8 +1,10 @@
-@tool
 extends Node2D
 class_name Koi
 
-
+@export var fill := false:
+	set(value):
+		fill = value
+		queue_redraw()
 @export var num_segments := 5:
 	set(value):
 		num_segments = value
@@ -41,8 +43,14 @@ func _process(_delta: float) -> void:
 
 
 func _draw() -> void:
-	for s in segments:
-		draw_arc(s.origin, radius, 0, 360, 100, Color.WHITE, 1, true)
+	for i in range(segments.size()):
+		var seg = segments[i]
+		var t = float(i) / float(num_segments - 1)
+		var segment_radius = radius * size_curve.sample(t)
+		if fill:
+			draw_circle(seg.origin, segment_radius, Color.WHITE)
+		else:
+			draw_arc(seg.origin, segment_radius, 0, 360, 100, Color.WHITE, 1, true)
 
 
 # Assumes the only changed segment was the head
@@ -58,7 +66,7 @@ func init_segments() -> void:
 	segments.clear()
 	var curr := Vector2.ZERO
 	var seg: Segment = null
-	for i in num_segments:
+	for i in range(num_segments):
 		seg = Segment.new(curr, radius)
 		segments.append(seg)
 		curr.x += dist_segments

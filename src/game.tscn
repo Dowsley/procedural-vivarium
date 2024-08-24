@@ -3,6 +3,8 @@
 [ext_resource type="PackedScene" uid="uid://cbr76dv68oqtt" path="res://src/koi.tscn" id="1_i28ue"]
 
 [sub_resource type="Curve" id="Curve_5kr7r"]
+_data = [Vector2(0, 0.615385), 0.0, 0.0, 0, 0, Vector2(0.294737, 0.802198), 0.0, 0.0, 0, 0, Vector2(1, 0.21978), 0.0, 0.0, 0, 0]
+point_count = 3
 
 [node name="Game" type="Node2D"]
 
