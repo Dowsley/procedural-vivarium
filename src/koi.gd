@@ -44,9 +44,9 @@ func _process(_delta: float) -> void:
 
 func _draw() -> void:
 	for i in range(segments.size()):
-		var seg = segments[i]
-		var t = float(i) / float(num_segments - 1)
-		var segment_radius = radius * size_curve.sample(t)
+		var seg := segments[i]
+		var t := float(i) / float(num_segments - 1)
+		var segment_radius := radius * size_curve.sample(t)
 		if fill:
 			draw_circle(seg.origin, segment_radius, Color.WHITE)
 		else:
