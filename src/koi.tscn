@@ -1,6 +1,14 @@
-[gd_scene load_steps=2 format=3 uid="uid://cbr76dv68oqtt"]
+[gd_scene load_steps=3 format=3 uid="uid://cbr76dv68oqtt"]
 
 [ext_resource type="Script" path="res://src/koi.gd" id="1_aic7n"]
+[ext_resource type="Texture2D" uid="uid://dv58ienrc22o2" path="res://assets/icon.svg" id="1_ikie2"]
 
-[node name="Koi" type="Node2D"]
+[node name="Koi" type="Line2D"]
+width = 20.0
+texture = ExtResource("1_ikie2")
+texture_mode = 2
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+antialiased = true
 script = ExtResource("1_aic7n")

@@ -3,19 +3,13 @@
 [ext_resource type="PackedScene" uid="uid://cbr76dv68oqtt" path="res://src/koi.tscn" id="1_i28ue"]
 
 [sub_resource type="Curve" id="Curve_5kr7r"]
-_data = [Vector2(0.0263158, 0.472527), 0.0, 0.0, 0, 0, Vector2(0.347368, 0.725275), 0.0, 0.0, 0, 0, Vector2(0.947368, 0.263736), 0.0, 0.0, 0, 0]
+_data = [Vector2(0, 0.296703), 0.0, 0.0, 0, 0, Vector2(0.347368, 0.725275), 0.0, 0.0, 0, 0, Vector2(0.947368, 0.263736), 0.0, 0.0, 0, 0]
 point_count = 3
 
 [node name="Game" type="Node2D"]
 
 [node name="Koi" parent="." instance=ExtResource("1_i28ue")]
 position = Vector2(734, 542)
+width_curve = SubResource("Curve_5kr7r")
 num_segments = 8
-radius = 40
-size_curve = SubResource("Curve_5kr7r")
-
-[node name="Koi2" parent="." instance=ExtResource("1_i28ue")]
-position = Vector2(701, 807)
-num_segments = 50
-radius = 30
-size_curve = SubResource("Curve_5kr7r")
+radius = 50
