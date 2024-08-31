@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://cbr76dv68oqtt" path="res://src/koi.tscn" id="1_i28ue"]
 
 [sub_resource type="Curve" id="Curve_5kr7r"]
-_data = [Vector2(0.0157895, 0.659341), 0.0, 0.0, 0, 0, Vector2(0.347368, 0.879121), 0.0, 0.0, 0, 0, Vector2(1, 0.56044), 0.0, 0.0, 0, 0]
+_data = [Vector2(0.0157895, 0.659341), 0.0, 0.0, 0, 0, Vector2(0.347368, 0.879121), 0.0, 0.0, 0, 0, Vector2(1, 0.230769), 0.0, 0.0, 0, 0]
 point_count = 3
 
 [sub_resource type="Gradient" id="Gradient_3rbu3"]
@@ -26,5 +26,5 @@ noise = SubResource("FastNoiseLite_xhdne")
 position = Vector2(734, 542)
 width_curve = SubResource("Curve_5kr7r")
 texture = SubResource("NoiseTexture2D_5ss8j")
-num_segments = 8
+num_segments = 12
 radius = 50
