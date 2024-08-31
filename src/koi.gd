@@ -14,6 +14,7 @@ var head: Vector2
 func _ready() -> void:
 	init_segments()
 	width = radius
+	texture.noise.seed = randi()
 
 
 func _process(_delta: float) -> void:
