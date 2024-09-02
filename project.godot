@@ -34,4 +34,4 @@ lmb_press={
 
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
-environment/defaults/default_clear_color=Color(0.305509, 0.548667, 0.596087, 1)
+environment/defaults/default_clear_color=Color(0.36859, 0.67899, 0.84549, 1)

@@ -2,16 +2,20 @@
 
 [ext_resource type="PackedScene" uid="uid://cbr76dv68oqtt" path="res://src/koi.tscn" id="1_i28ue"]
 [ext_resource type="Script" path="res://src/game.gd" id="1_keh2g"]
-[ext_resource type="Shader" path="res://data/water2.gdshader" id="3_yq6c3"]
+[ext_resource type="Shader" path="res://data/water3.gdshader" id="3_24psr"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_8e1yn"]
-shader = ExtResource("3_yq6c3")
-shader_parameter/WATER_COL = Color(0.176471, 0.635294, 0.85098, 0.5)
+shader = ExtResource("3_24psr")
+shader_parameter/OCTAVE = 6
+shader_parameter/mulscale = 5.0
+shader_parameter/height = 0.6
+shader_parameter/tide = 0.1
+shader_parameter/foamthickness = 0.1
+shader_parameter/timescale = 1.0
+shader_parameter/waterdeep = 0.3
+shader_parameter/WATER_COL = Color(0.176471, 0.635294, 0.85098, 0.415686)
 shader_parameter/WATER2_COL = Color(0.0588235, 0.529412, 0.776471, 0.5)
-shader_parameter/FOAM_COL = Color(0.87451, 0.988235, 1, 1)
-shader_parameter/distortion_speed = 2.0
-shader_parameter/tile = Vector2(0.5, 0.5)
-shader_parameter/offset = Vector2(3.73, 0)
+shader_parameter/FOAM_COL = Color(0.87451, 0.988235, 1, 0.564706)
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_keh2g")
