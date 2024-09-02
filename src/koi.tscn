@@ -1,18 +1,21 @@
 [gd_scene load_steps=4 format=3 uid="uid://cbr76dv68oqtt"]
 
+[ext_resource type="Texture2D" uid="uid://m81ck6jqcr03" path="res://data/koi_types/utsurimono.tres" id="1_6504t"]
 [ext_resource type="Script" path="res://src/koi.gd" id="1_aic7n"]
-
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_40tir"]
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_5njrh"]
-noise = SubResource("FastNoiseLite_40tir")
+[ext_resource type="Curve" uid="uid://sekdstxsjfog" path="res://data/koi_shape.tres" id="1_aijw1"]
 
 [node name="Koi" type="Line2D"]
 width = 20.0
-texture = SubResource("NoiseTexture2D_5njrh")
+width_curve = ExtResource("1_aijw1")
+texture = ExtResource("1_6504t")
 texture_mode = 2
 joint_mode = 2
 begin_cap_mode = 2
 end_cap_mode = 2
 antialiased = true
 script = ExtResource("1_aic7n")
+num_segments = 12
+radius = 50
+turn_speed = 0.05
+random_turn_frequency = 0.03
+max_turn_angle = 120.0
