@@ -1,6 +1,8 @@
 extends Line2D
 class_name Koi
 
+@onready var left_eye: Node2D = $LeftEye
+@onready var right_eye: Node2D = $RightEye
 
 @export var num_segments := 5
 @export var radius := 20
@@ -32,6 +34,8 @@ func _process(delta: float) -> void:
 	points[0] = Vector2(new_pos)
 	head = points[0]
 	update_segments()
+	
+	update_eye_positions()
 
 
 # Assumes the only changed segment was the head
@@ -70,3 +74,12 @@ func random_turn() -> void:
 		random_turn_angle += randf_range(-max_turn_angle, max_turn_angle) * turn_speed
 	else:
 		random_turn_angle = lerp(random_turn_angle, 0.0, 0.1)
+
+
+func update_eye_positions() -> void:
+	var angle := velocity.angle()
+	var offset := Vector2(radius/3, 0).rotated(angle)
+
+	# Position the eyes relative to the head position
+	left_eye.position = head + offset.rotated(deg_to_rad(90))
+	right_eye.position = head + offset.rotated(deg_to_rad(-90))
