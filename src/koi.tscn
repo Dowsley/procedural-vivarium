@@ -20,6 +20,7 @@ radius = 50
 turn_speed = 0.05
 random_turn_frequency = 0.03
 max_turn_angle = 120.0
+velocity = Vector2(2, 2)
 
 [node name="LeftEye" parent="." instance=ExtResource("4_4aotf")]
 

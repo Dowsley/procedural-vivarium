@@ -20,7 +20,10 @@ var head: Vector2
 func _ready() -> void:
 	init_segments()
 	width = radius
-	texture = texture.duplicate()
+
+
+func load_texture(tex: Texture2D) -> void:
+	texture = tex.duplicate()
 	texture.noise = texture.noise.duplicate()
 	texture.noise.seed = randi()
 
