@@ -32,7 +32,7 @@ func _process(delta: float) -> void:
 	random_turn()
 	ensure_within_screen_bounds()
 
-	var new_pos := points[0] + velocity
+	var new_pos := points[0] + velocity * delta
 	velocity = velocity.rotated(deg_to_rad(random_turn_angle))
 	points[0] = Vector2(new_pos)
 	head = points[0]
