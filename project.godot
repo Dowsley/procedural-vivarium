@@ -15,6 +15,10 @@ run/main_scene="res://src/game.tscn"
 config/features=PackedStringArray("4.3", "GL Compatibility")
 config/icon="res://assets/maybe_new_icon.png"
 
+[autoload]
+
+ConstraintUtil="*res://src/utils/contraint_util.gd"
+
 [display]
 
 window/size/viewport_width=1920
@@ -34,4 +38,4 @@ lmb_press={
 
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
-environment/defaults/default_clear_color=Color(0.36859, 0.67899, 0.84549, 1)
+environment/defaults/default_clear_color=Color(0.152941, 0.176471, 0.207843, 1)

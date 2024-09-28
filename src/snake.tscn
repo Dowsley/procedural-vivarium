@@ -1,0 +1,34 @@
+[gd_scene load_steps=7 format=3 uid="uid://cbr76dv68oqtt"]
+
+[ext_resource type="Script" path="res://src/snake.gd" id="1_aic7n"]
+[ext_resource type="PackedScene" uid="uid://roqrpsxgbc8g" path="res://src/chain.tscn" id="3_taoyk"]
+[ext_resource type="PackedScene" uid="uid://vmvbp3nctl1h" path="res://src/eye.tscn" id="4_4aotf"]
+[ext_resource type="Texture2D" uid="uid://iac4x6g7nxux" path="res://assets/square.png" id="4_t4wbf"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8h3e5"]
+
+[sub_resource type="Curve" id="Curve_u6o4h"]
+_data = [Vector2(0.00268817, 0.818576), 0.0, 0.0, 0, 0, Vector2(0.0430107, 0.931184), -5.81809, -5.81809, 0, 0, Vector2(0.129032, 0.568335), 0.0, 0.0, 0, 0, Vector2(0.247368, 0.56044), 0.0, 0.0, 0, 0, Vector2(0.863158, 0.340659), 0.0, 0.0, 0, 0, Vector2(1, 0.241758), 0.0, 0.0, 0, 0]
+point_count = 6
+
+[node name="Snake" type="Node2D"]
+script = ExtResource("1_aic7n")
+link_size = 10
+eye_size = 3
+move_speed = 200
+
+[node name="Spine" parent="." instance=ExtResource("3_taoyk")]
+material = SubResource("ShaderMaterial_8h3e5")
+width = 40.0
+width_curve = SubResource("Curve_u6o4h")
+default_color = Color(0.658824, 0.223529, 0.192157, 1)
+texture = ExtResource("4_t4wbf")
+texture_mode = 2
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+antialiased = true
+
+[node name="LeftEye" parent="." instance=ExtResource("4_4aotf")]
+
+[node name="RightEye" parent="." instance=ExtResource("4_4aotf")]
