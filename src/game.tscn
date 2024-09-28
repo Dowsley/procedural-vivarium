@@ -1,36 +1,16 @@
-[gd_scene load_steps=5 format=3 uid="uid://bif56bhg6uym3"]
+[gd_scene load_steps=3 format=3 uid="uid://bif56bhg6uym3"]
 
-[ext_resource type="PackedScene" uid="uid://cbr76dv68oqtt" path="res://src/koi.tscn" id="1_i28ue"]
+[ext_resource type="PackedScene" uid="uid://cbr76dv68oqtt" path="res://src/lizard.tscn" id="1_i28ue"]
 [ext_resource type="Script" path="res://src/game.gd" id="1_keh2g"]
-[ext_resource type="Shader" path="res://data/water3.gdshader" id="3_24psr"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_8e1yn"]
-shader = ExtResource("3_24psr")
-shader_parameter/OCTAVE = 6
-shader_parameter/mulscale = 5.0
-shader_parameter/height = 0.6
-shader_parameter/tide = 0.1
-shader_parameter/foamthickness = 0.1
-shader_parameter/timescale = 1.0
-shader_parameter/waterdeep = 0.3
-shader_parameter/WATER_COL = Color(0.176471, 0.635294, 0.85098, 0.415686)
-shader_parameter/WATER2_COL = Color(0.0588235, 0.529412, 0.776471, 0.5)
-shader_parameter/FOAM_COL = Color(0.87451, 0.988235, 1, 0.564706)
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_keh2g")
-num_kois = 12
-koi_scene = ExtResource("1_i28ue")
 
-[node name="WaterSurface" type="ColorRect" parent="."]
-top_level = true
-material = SubResource("ShaderMaterial_8e1yn")
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_right = 1920.0
-offset_bottom = 1080.0
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_horizontal = 6
-size_flags_vertical = 6
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(951, 544)
+zoom = Vector2(2, 2)
+
+[node name="Lizard" parent="." instance=ExtResource("1_i28ue")]
+position = Vector2(950, 543)
+width_curve = null
+texture = null
