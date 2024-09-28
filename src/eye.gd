@@ -10,4 +10,4 @@ func initialize(width: int, color: Color) -> void:
 
 
 func _draw() -> void:
-	draw_circle(Vector2(), width, color)
+	draw_circle(Vector2.ZERO, width, color)
