@@ -13,7 +13,7 @@ var angle_constraint: float
 var angles: Array[float]
 
 
-func initialize(joint_count: int, link_size: int, angle_constraint: float) -> void:
+func initialize(joint_count: int, link_size: int, angle_constraint: float = TAU) -> void:
 	self.joint_count = joint_count
 	self.link_size = link_size
 	self.angle_constraint = angle_constraint

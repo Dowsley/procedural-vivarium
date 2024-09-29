@@ -34,19 +34,6 @@ begin_cap_mode = 2
 end_cap_mode = 2
 antialiased = true
 
-[node name="Spine2" parent="." instance=ExtResource("3_taoyk")]
-material = SubResource("ShaderMaterial_8h3e5")
-width = 40.0
-width_curve = SubResource("Curve_u6o4h")
-default_color = Color(0.658824, 0.223529, 0.192157, 1)
-gradient = SubResource("Gradient_j5njn")
-texture = ExtResource("4_t4wbf")
-texture_mode = 2
-joint_mode = 2
-begin_cap_mode = 2
-end_cap_mode = 2
-antialiased = true
-
 [node name="LeftEye" parent="." instance=ExtResource("4_4aotf")]
 
 [node name="RightEye" parent="." instance=ExtResource("4_4aotf")]

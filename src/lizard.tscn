@@ -1,0 +1,96 @@
+[gd_scene load_steps=9 format=3 uid="uid://m16gun5gv8mc"]
+
+[ext_resource type="Script" path="res://src/lizard.gd" id="1_enrge"]
+[ext_resource type="PackedScene" uid="uid://roqrpsxgbc8g" path="res://src/chain.tscn" id="2_cfeyk"]
+[ext_resource type="Texture2D" uid="uid://iac4x6g7nxux" path="res://assets/square.png" id="3_4fejv"]
+[ext_resource type="PackedScene" uid="uid://vmvbp3nctl1h" path="res://src/eye.tscn" id="3_8jd32"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_68ide"]
+
+[sub_resource type="Curve" id="Curve_d7wm7"]
+_data = [Vector2(0.351695, 0.43956), 0.0, 0.0, 0, 0]
+point_count = 1
+
+[sub_resource type="Gradient" id="Gradient_6a85d"]
+offsets = PackedFloat32Array(0, 0.307692, 0.647773, 1)
+colors = PackedColorArray(0.894118, 0.176471, 0.176471, 1, 0.890196, 0.345098, 0.345098, 1, 0.894118, 0.176471, 0.176471, 1, 0.890196, 0.345098, 0.345098, 1)
+
+[sub_resource type="Curve" id="Curve_71iv5"]
+_data = [Vector2(0.0324544, 0.602642), 0.0, 1.83805, 0, 0, Vector2(0.133249, 0.617647), 0.0, 0.0, 0, 0, Vector2(0.192893, 0.4), 0.0, 0.0, 0, 0, Vector2(0.350913, 0.602642), 0.0, 0.0, 0, 0, Vector2(0.517241, 0.607547), 0.0, 0.0, 0, 0, Vector2(0.805274, 0.244528), 0.0, 0.0, 0, 0, Vector2(0.997972, 0.141509), 0.0, 0.0, 0, 0]
+point_count = 7
+
+[node name="Lizard" type="Node2D"]
+script = ExtResource("1_enrge")
+joint_count = 14
+link_size = 10
+eye_size = 3
+move_speed = 150
+
+[node name="Arm1" parent="." instance=ExtResource("2_cfeyk")]
+material = SubResource("ShaderMaterial_68ide")
+width = 20.0
+width_curve = SubResource("Curve_d7wm7")
+default_color = Color(0.658824, 0.223529, 0.192157, 1)
+gradient = SubResource("Gradient_6a85d")
+texture = ExtResource("3_4fejv")
+texture_mode = 2
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+antialiased = true
+
+[node name="Arm2" parent="." instance=ExtResource("2_cfeyk")]
+material = SubResource("ShaderMaterial_68ide")
+width = 20.0
+width_curve = SubResource("Curve_d7wm7")
+default_color = Color(0.658824, 0.223529, 0.192157, 1)
+gradient = SubResource("Gradient_6a85d")
+texture = ExtResource("3_4fejv")
+texture_mode = 2
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+antialiased = true
+
+[node name="Arm3" parent="." instance=ExtResource("2_cfeyk")]
+material = SubResource("ShaderMaterial_68ide")
+width = 20.0
+width_curve = SubResource("Curve_d7wm7")
+default_color = Color(0.658824, 0.223529, 0.192157, 1)
+gradient = SubResource("Gradient_6a85d")
+texture = ExtResource("3_4fejv")
+texture_mode = 2
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+antialiased = true
+
+[node name="Arm4" parent="." instance=ExtResource("2_cfeyk")]
+material = SubResource("ShaderMaterial_68ide")
+width = 20.0
+width_curve = SubResource("Curve_d7wm7")
+default_color = Color(0.658824, 0.223529, 0.192157, 1)
+gradient = SubResource("Gradient_6a85d")
+texture = ExtResource("3_4fejv")
+texture_mode = 2
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+antialiased = true
+
+[node name="Spine" parent="." instance=ExtResource("2_cfeyk")]
+material = SubResource("ShaderMaterial_68ide")
+width = 40.0
+width_curve = SubResource("Curve_71iv5")
+default_color = Color(0.658824, 0.223529, 0.192157, 1)
+gradient = SubResource("Gradient_6a85d")
+texture = ExtResource("3_4fejv")
+texture_mode = 2
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+antialiased = true
+
+[node name="LeftEye" parent="." instance=ExtResource("3_8jd32")]
+
+[node name="RightEye" parent="." instance=ExtResource("3_8jd32")]

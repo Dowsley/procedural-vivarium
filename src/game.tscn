@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://bif56bhg6uym3"]
 
-[ext_resource type="PackedScene" uid="uid://cbr76dv68oqtt" path="res://src/snake.tscn" id="1_i28ue"]
 [ext_resource type="Script" path="res://src/game.gd" id="1_keh2g"]
+[ext_resource type="PackedScene" uid="uid://m16gun5gv8mc" path="res://src/lizard.tscn" id="2_0mgcl"]
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_keh2g")
@@ -10,5 +10,5 @@ script = ExtResource("1_keh2g")
 position = Vector2(951, 544)
 zoom = Vector2(2, 2)
 
-[node name="Snake" parent="." instance=ExtResource("1_i28ue")]
-position = Vector2(871, 531)
+[node name="Lizard" parent="." instance=ExtResource("2_0mgcl")]
+position = Vector2(904, 560)
