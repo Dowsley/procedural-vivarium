@@ -33,7 +33,8 @@ func _process(delta: float) -> void:
 	if not should_stop(head_pos):
 		update_velocity(delta, head_pos)
 		spine.resolve(compute_new_pos(head_pos))
-		update_eye_positions(head_pos)
+
+	update_eye_positions(head_pos)
 
 	for i in range(arms.size()):
 		var side := 1 if i % 2 == 0 else -1
