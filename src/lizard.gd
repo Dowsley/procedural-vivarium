@@ -24,11 +24,6 @@ func _ready() -> void:
 
 
 func _process(delta: float) -> void:
-	if Input.is_action_pressed("lmb_press"):
-		move_speed = 800
-	else:
-		move_speed = 200
-	
 	var head_pos := spine.points[0]
 	if not should_stop(head_pos):
 		update_velocity(delta, head_pos)

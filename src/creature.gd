@@ -14,7 +14,7 @@ class_name Creature
 @export_category("Behaviour and Appearance")
 @export var eye_size := 4
 @export var eye_color := Color.WHITE
-@export var move_speed := 100
+@export var move_speed := 200
 
 const CLOSE_ENOUGH_TO_MOUSE_RADIUS := 10
 var velocity: Vector2
