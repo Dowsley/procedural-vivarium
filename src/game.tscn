@@ -1,14 +1,35 @@
-[gd_scene load_steps=3 format=3 uid="uid://bif56bhg6uym3"]
+[gd_scene load_steps=2 format=3 uid="uid://bif56bhg6uym3"]
 
-[ext_resource type="Script" path="res://src/game.gd" id="1_keh2g"]
 [ext_resource type="PackedScene" uid="uid://m16gun5gv8mc" path="res://src/lizard.tscn" id="2_0mgcl"]
 
-[node name="Game" type="Node2D"]
-script = ExtResource("1_keh2g")
+[node name="Game" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
-[node name="Camera2D" type="Camera2D" parent="."]
+[node name="SubViewportContainer" type="SubViewportContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -2.0
+offset_right = -2.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
+disable_3d = true
+size = Vector2i(1920, 1080)
+
+[node name="Camera2D" type="Camera2D" parent="SubViewportContainer/SubViewport"]
 position = Vector2(951, 544)
 zoom = Vector2(2, 2)
 
-[node name="Lizard" parent="." instance=ExtResource("2_0mgcl")]
+[node name="Lizard" parent="SubViewportContainer/SubViewport" instance=ExtResource("2_0mgcl")]
 position = Vector2(904, 560)
+
+[node name="Button" type="CheckButton" parent="SubViewportContainer"]
+layout_mode = 2
