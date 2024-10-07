@@ -3,8 +3,8 @@ class_name Creature
 
 
 @onready var spine: Chain = $Spine
-@onready var left_eye: Node2D = $LeftEye
-@onready var right_eye: Node2D = $RightEye
+@onready var left_eye: Eye = $LeftEye
+@onready var right_eye: Eye = $RightEye
 
 @export_category("Chain")
 @export var joint_count := 48
@@ -29,7 +29,7 @@ func update_velocity_keyboard(delta: float, head_pos: Vector2) -> void:
 	if steering_input != 0:
 		var rotation_angle: float = steering_input * deg_to_rad(90) * delta
 		direction = direction.rotated(rotation_angle).normalized()
-	
+
 	velocity = direction * move_speed * delta
 
 
@@ -43,7 +43,7 @@ func update_velocity_follow_mouse(delta: float, head_pos: Vector2) -> void:
 
 func compute_new_pos(head_pos: Vector2) -> Vector2:
 	return head_pos + velocity
-	
+
 
 func should_stop(head_pos: Vector2) -> bool:
 	return abs(get_global_mouse_position().distance_to(to_global(head_pos))) <= CLOSE_ENOUGH_TO_MOUSE_RADIUS

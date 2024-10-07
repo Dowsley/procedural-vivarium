@@ -1,4 +1,5 @@
 extends Node2D
+class_name Eye
 
 var width := 4
 var color := Color.WHITE

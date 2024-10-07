@@ -47,8 +47,8 @@ zoom = Vector2(2, 2)
 [node name="Lizard" parent="VBoxContainer/SubViewportContainer/SubViewport" instance=ExtResource("2_0mgcl")]
 unique_name_in_owner = true
 position = Vector2(904, 560)
+debug = true
 keyboard_control = true
-move_speed = 100.0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
 layout_mode = 2

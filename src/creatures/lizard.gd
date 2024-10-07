@@ -45,9 +45,10 @@ func _process(delta: float) -> void:
 	if active:
 		if keyboard_control:
 			update_velocity_keyboard(delta, head_pos)
+			spine.resolve(compute_new_pos(head_pos))
 		elif not should_stop(head_pos):
 			update_velocity_follow_mouse(delta, head_pos)
-		spine.resolve(compute_new_pos(head_pos))
+			spine.resolve(compute_new_pos(head_pos))
 
 	update_eye_positions(head_pos)
 
