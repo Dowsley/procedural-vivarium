@@ -1,5 +1,6 @@
 extends Node
 
+
 # Constrain the vector to be at a certain range of the anchor
 func constrain_distance(pos: Vector2, anchor: Vector2, constraint: float) -> Vector2:
 	return anchor + (pos - anchor).normalized() * constraint

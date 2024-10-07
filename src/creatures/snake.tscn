@@ -1,8 +1,8 @@
 [gd_scene load_steps=8 format=3 uid="uid://cbr76dv68oqtt"]
 
-[ext_resource type="Script" path="res://src/snake.gd" id="1_aic7n"]
-[ext_resource type="PackedScene" uid="uid://roqrpsxgbc8g" path="res://src/chain.tscn" id="3_taoyk"]
-[ext_resource type="PackedScene" uid="uid://vmvbp3nctl1h" path="res://src/eye.tscn" id="4_4aotf"]
+[ext_resource type="Script" path="res://src/creatures/snake.gd" id="1_aic7n"]
+[ext_resource type="PackedScene" uid="uid://roqrpsxgbc8g" path="res://src/creatures/chain.tscn" id="3_taoyk"]
+[ext_resource type="PackedScene" uid="uid://vmvbp3nctl1h" path="res://src/creatures/eye.tscn" id="4_4aotf"]
 [ext_resource type="Texture2D" uid="uid://iac4x6g7nxux" path="res://assets/square.png" id="4_t4wbf"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_8h3e5"]
