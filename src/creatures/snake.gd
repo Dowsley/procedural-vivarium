@@ -11,7 +11,7 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	var head_pos := spine.points[0]
 	if not should_stop(head_pos):
-		update_velocity(delta, head_pos)
+		update_velocity_follow_mouse(delta, head_pos)
 		spine.resolve(compute_new_pos(head_pos))
 		update_eye_positions(head_pos)
 	queue_redraw()
