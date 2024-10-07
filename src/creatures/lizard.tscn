@@ -24,7 +24,6 @@ script = ExtResource("1_enrge")
 joint_count = 14
 link_size = 10
 eye_size = 3
-move_speed = 150
 
 [node name="Arm1" parent="." instance=ExtResource("2_cfeyk")]
 material = SubResource("ShaderMaterial_68ide")

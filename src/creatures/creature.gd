@@ -14,13 +14,28 @@ class_name Creature
 @export_category("Behaviour and Appearance")
 @export var eye_size := 4
 @export var eye_color := Color.WHITE
-@export var move_speed := 200
+@export var move_speed := 200.0
+@export var accel_speed := 1
 
 const CLOSE_ENOUGH_TO_MOUSE_RADIUS := 10
 var velocity: Vector2
+var direction: Vector2 = Vector2.RIGHT
+
+func update_velocity_keyboard(delta: float, head_pos: Vector2) -> void:
+	var steering_input: float = Input.get_action_strength("steer_right") - Input.get_action_strength("steer_left")
+	var accel_input: float = Input.get_action_strength("accel") - Input.get_action_strength("deaccel")
+	move_speed += accel_speed * accel_input
+	print(accel_speed * accel_input)
+
+	if steering_input != 0:
+		var rotation_angle: float = steering_input * deg_to_rad(90) * delta
+		direction = direction.rotated(rotation_angle).normalized()
+	
+	velocity = direction * move_speed * delta
 
 
-func update_velocity(delta: float, head_pos: Vector2) -> void:
+
+func update_velocity_follow_mouse(delta: float, head_pos: Vector2) -> void:
 	var mouse_position: Vector2 = get_global_mouse_position()
 	var current_position: Vector2 = to_global(head_pos)
 	var direction: Vector2 = (mouse_position - current_position).normalized()

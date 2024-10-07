@@ -1,6 +1,8 @@
 extends Creature
 class_name Lizard
 
+@export var debug := false
+@export var keyboard_control := false
 
 @onready var arms: Array[Chain] = [
 	$Arm1,
@@ -11,7 +13,6 @@ class_name Lizard
 var arms_desired: Array[Vector2] = []
 
 var active := true
-var debug := false
 
 var params := {
 	"m_arm_length1": 52 / 4,
@@ -57,8 +58,11 @@ func _process(delta: float) -> void:
 		active = not active
 
 	var head_pos := spine.points[0]
-	if not should_stop(head_pos) and active:
-		update_velocity(delta, head_pos)
+	if active:
+		if keyboard_control:
+			update_velocity_keyboard(delta, head_pos)
+		elif not should_stop(head_pos):
+			update_velocity_follow_mouse(delta, head_pos)
 		spine.resolve(compute_new_pos(head_pos))
 
 	update_eye_positions(head_pos)
