@@ -48,11 +48,42 @@ zoom = Vector2(2, 2)
 unique_name_in_owner = true
 position = Vector2(904, 560)
 keyboard_control = true
-move_speed = 200.0
+move_speed = 100.0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
+
+[node name="PanelContainer4" type="PanelContainer" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_67e8l")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/HBoxContainer/PanelContainer4"]
+layout_mode = 2
+
+[node name="JointCountParamEditor" parent="VBoxContainer/HBoxContainer/PanelContainer4/VBoxContainer" groups=["param_editor"] instance=ExtResource("2_fwkne")]
+layout_mode = 2
+param_name = "m_joint_count"
+min = 1.0
+max = 10.0
+should_trigger_arm_compute = true
+
+[node name="ArmLen1ParamEditor" parent="VBoxContainer/HBoxContainer/PanelContainer4/VBoxContainer" groups=["param_editor"] instance=ExtResource("2_fwkne")]
+layout_mode = 2
+param_name = "m_arm_length1"
+min = 1.0
+max = 52.0
+step = 0.1
+should_trigger_arm_compute = true
+
+[node name="ArmLen2ParamEditor" parent="VBoxContainer/HBoxContainer/PanelContainer4/VBoxContainer" groups=["param_editor"] instance=ExtResource("2_fwkne")]
+layout_mode = 2
+param_name = "m_arm_length2"
+min = 1.0
+max = 36.0
+step = 0.1
+should_trigger_arm_compute = true
 
 [node name="PanelContainer" type="PanelContainer" parent="VBoxContainer/HBoxContainer"]
 layout_mode = 2

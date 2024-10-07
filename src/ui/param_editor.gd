@@ -9,6 +9,7 @@ extends VBoxContainer
 @export var min := 0.0
 @export var max := 100.0
 @export var step := 1.0
+@export var should_trigger_arm_compute := false
 
 var default_val: float
 var lizard: Lizard
@@ -30,12 +31,15 @@ func init(lizard: Lizard) -> void:
 
 
 func set_val(val: float) -> void:
-	value_label.text = str(val)
-	lizard.set_param(param_name, val)
-	lizard.set_param(param_name, val)
+	value_label.text = String("%.2f" % val) 
+	if lizard:
+		lizard.set_param(param_name, val)
+
 
 func _on_slider_value_changed(value: float) -> void:
 	set_val(value)
+	if should_trigger_arm_compute and lizard:
+		lizard.initialize_arms()
 
 
 func _on_button_button_up() -> void:

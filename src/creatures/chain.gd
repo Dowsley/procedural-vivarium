@@ -20,6 +20,7 @@ func initialize(joint_count: int, link_size: int, angle_constraint: float = TAU)
 	
 	points.clear()
 	angles.clear()
+	clear_points()
 	add_point(Vector2.ZERO)
 	angles.push_back(0.0);
 	for i in range(joint_count):

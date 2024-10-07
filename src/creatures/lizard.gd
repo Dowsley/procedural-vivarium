@@ -14,7 +14,7 @@ var arms_desired: Array[Vector2] = []
 
 var active := true
 
-var params := {
+@export var params := {
 	"m_arm_length1": 52 / 4,
 	"m_arm_length2": 36 / 4,
 	"m_joint_count": 3,
@@ -28,29 +28,13 @@ var params := {
 	"m_fabrik_lerp_weight": 0.2,
 }
 
-#var m_arm_length1 := 52 / 4
-#var m_arm_length2 := 36 / 4
-#var m_joint_count := 3
-#var m_body_index1 := 3
-#var m_body_index2 := 7
-#var m_angle1 := PI / 4
-#var m_angle2 := PI / 3
-#var m_len_offset_desired := 50
-#var m_distance_thres := 100
-#var m_len_offset_end := -5
-#var m_fabrik_lerp_weight := 0.2
-
 
 func _ready() -> void:
 	spine.initialize(joint_count, link_size, angle_constraint)
 	left_eye.initialize(eye_size, eye_color)
 	right_eye.initialize(eye_size, eye_color)
 
-	arms_desired.resize(4)
-	for i in range(4):
-		arms_desired[i] = Vector2.ZERO
-		var arm_length: int = params["m_arm_length1"] if i < 2 else params["m_arm_length2"]
-		arms[i].initialize(params["m_joint_count"], arm_length)
+	initialize_arms()
 
 
 func _process(delta: float) -> void:
@@ -100,6 +84,15 @@ func _draw() -> void:
 	for i in range(arms.size()):
 		# Debugging: Uncomment the lines below to visualize arm targets
 		draw_line(arms[i].points[0], arms_desired[i], Color.GREEN, 2)  # Target position
+
+
+func initialize_arms() -> void:
+	arms_desired.clear()
+	arms_desired.resize(4)
+	for i in range(4):
+		arms_desired[i] = Vector2.ZERO
+		var arm_length: int = params["m_arm_length1"] if i < 2 else params["m_arm_length2"]
+		arms[i].initialize(params["m_joint_count"], arm_length)
 
 
 func set_param(key: String, val) -> bool:
