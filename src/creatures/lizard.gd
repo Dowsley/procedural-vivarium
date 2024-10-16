@@ -1,8 +1,14 @@
 extends Creature
 class_name Lizard
 
+enum ControlMode {
+	INFINITE_STROLL,
+	KEYBOARD_CONTROL,
+	FOLLOW_MOUSE,
+}
+
 @export var debug := false
-@export var keyboard_control := false
+@export var control_mode: ControlMode
 
 @onready var arms: Array[Chain] = [
 	$Arm1,
@@ -31,12 +37,15 @@ func _process(delta: float) -> void:
 
 	var head_pos := spine.points[0]
 	if active:
-		if keyboard_control:
-			update_velocity_keyboard(delta, head_pos)
-			spine.resolve(compute_new_pos(head_pos))
-		elif not should_stop(head_pos):
-			update_velocity_follow_mouse(delta, head_pos)
-			spine.resolve(compute_new_pos(head_pos))
+		match control_mode:
+			ControlMode.KEYBOARD_CONTROL:
+				update_velocity_keyboard(delta, head_pos)
+			ControlMode.FOLLOW_MOUSE:
+				if not should_stop(head_pos):
+					update_velocity_follow_mouse(delta, head_pos)
+			ControlMode.INFINITE_STROLL:
+				update_velocity_infinite_scroll(delta, head_pos)
+		spine.resolve(compute_new_pos(head_pos))
 
 	update_eye_positions(head_pos)
 

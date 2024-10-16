@@ -1,6 +1,7 @@
 extends Control
 
 
+@onready var camera := %Camera2D
 @onready var lizard := %Lizard
 @onready var preset_options := %PresetOptions
 @onready var save_button := %SaveButton
@@ -14,6 +15,10 @@ const PATH_PREFIX := "res://data/"
 func _ready() -> void:
 	init_lizards()
 	load_all_preset_names()
+
+
+func _process(_delta: float) -> void:
+	camera.position = lizard.spine.points[0]
 
 
 func init_lizards() -> void:

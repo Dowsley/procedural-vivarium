@@ -33,6 +33,10 @@ func update_velocity_keyboard(delta: float, head_pos: Vector2) -> void:
 	velocity = direction * move_speed * delta
 
 
+func update_velocity_infinite_scroll(delta: float, head_pos: Vector2) -> void:
+	var direction := Vector2.RIGHT
+	velocity = direction * move_speed * delta
+
 
 func update_velocity_follow_mouse(delta: float, head_pos: Vector2) -> void:
 	var mouse_position: Vector2 = get_global_mouse_position()
