@@ -1,4 +1,5 @@
 extends VBoxContainer
+class_name ParamEditor
 
 
 @onready var name_label := %NameLabel
@@ -24,7 +25,7 @@ func _ready() -> void:
 
 func init(lizard: Lizard) -> void:
 	self.lizard = lizard
-	var val: float = lizard.params[param_name]
+	var val: float = lizard.get_param(param_name)
 	set_val(val)
 	default_val = val
 	slider.value = val

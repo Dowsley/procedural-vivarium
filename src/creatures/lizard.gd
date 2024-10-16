@@ -14,19 +14,7 @@ var arms_desired: Array[Vector2] = []
 
 var active := true
 
-@export var params := {
-	"m_arm_length1": 52 / 4,
-	"m_arm_length2": 36 / 4,
-	"m_joint_count": 3,
-	"m_body_index1": 3,
-	"m_body_index2": 7,
-	"m_angle1": PI / 4,
-	"m_angle2": PI / 3,
-	"m_len_offset_desired": 50,
-	"m_distance_thres": 100,
-	"m_len_offset_end": -5,
-	"m_fabrik_lerp_weight": 0.2,
-}
+@export var preset: Preset
 
 
 func _ready() -> void:
@@ -54,26 +42,26 @@ func _process(delta: float) -> void:
 
 	for i in range(arms.size()):
 		var side := 1 if i % 2 == 0 else -1
-		var body_index: int = params["m_body_index1"] if i < 2 else params["m_body_index2"]
-		var angle: float = params["m_angle1"] if i < 2 else params["m_angle2"]
+		var body_index: int = get_param("m_body_index1") if i < 2 else get_param("m_body_index2")
+		var angle: float = get_param("m_angle1") if i < 2 else get_param("m_angle2")
 		var angle_offset := angle * side
 
 		var desired_pos := Vector2(
-			get_pos_x(body_index, angle_offset, params["m_len_offset_desired"]),
-			get_pos_y(body_index, angle_offset, params["m_len_offset_desired"])
+			get_pos_x(body_index, angle_offset, get_param("m_len_offset_desired")),
+			get_pos_y(body_index, angle_offset, get_param("m_len_offset_desired"))
 		)
 
-		if desired_pos.distance_to(arms_desired[i]) > params["m_distance_thres"]:
+		if desired_pos.distance_to(arms_desired[i]) > get_param("m_distance_thres"):
 			arms_desired[i] = desired_pos
 
 		var end_angle_offset := (PI / 2 * side)
 		var end_pos := Vector2(
-			get_pos_x(body_index, end_angle_offset, params["m_len_offset_end"]),
-			get_pos_y(body_index, end_angle_offset, params["m_len_offset_end"])
+			get_pos_x(body_index, end_angle_offset, get_param("m_len_offset_end")),
+			get_pos_y(body_index, end_angle_offset, get_param("m_len_offset_end"))
 		)
 
 		arms[i].fabrik_resolve(
-			arms[i].points[0].lerp(arms_desired[i], params["m_fabrik_lerp_weight"]),
+			arms[i].points[0].lerp(arms_desired[i], get_param("m_fabrik_lerp_weight")),
 			end_pos
 		)
 	queue_redraw()
@@ -92,16 +80,20 @@ func initialize_arms() -> void:
 	arms_desired.resize(4)
 	for i in range(4):
 		arms_desired[i] = Vector2.ZERO
-		var arm_length: int = params["m_arm_length1"] if i < 2 else params["m_arm_length2"]
-		arms[i].initialize(params["m_joint_count"], arm_length)
+		var arm_length: int = get_param("m_arm_length1") if i < 2 else get_param("m_arm_length2")
+		arms[i].initialize(get_param("m_joint_count"), arm_length)
 
 
 func set_param(key: String, val) -> bool:
-	if not params.has(key):
+	if not preset.params.has(key):
 		return false
-	params[key] = val
-	
+	preset.params[key] = val
 	return true
+	
+	
+func get_param(key: String):
+	assert(preset.params.has(key), "Invalid key: " + String(key))
+	return preset.params[key]
 
 
 func get_pos_x(i: int, angle_offset: float, length_offset: float) -> float:

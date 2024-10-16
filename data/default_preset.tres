@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="Preset" load_steps=2 format=3 uid="uid://k86mamnsfaml"]
+
+[ext_resource type="Script" path="res://src/creatures/preset.gd" id="1_7kmsr"]
+
+[resource]
+script = ExtResource("1_7kmsr")
+params = {
+"m_angle1": 0.785398,
+"m_angle2": 1.0472,
+"m_arm_length1": 13,
+"m_arm_length2": 9,
+"m_body_index1": 3,
+"m_body_index2": 7,
+"m_distance_thres": 100,
+"m_fabrik_lerp_weight": 0.2,
+"m_joint_count": 3,
+"m_len_offset_desired": 50,
+"m_len_offset_end": -5
+}

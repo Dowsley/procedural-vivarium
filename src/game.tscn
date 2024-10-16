@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://bif56bhg6uym3"]
+[gd_scene load_steps=6 format=3 uid="uid://bif56bhg6uym3"]
 
 [ext_resource type="Script" path="res://src/game.gd" id="1_24r66"]
 [ext_resource type="PackedScene" uid="uid://m16gun5gv8mc" path="res://src/creatures/lizard.tscn" id="2_0mgcl"]
 [ext_resource type="PackedScene" uid="uid://drgfdoyqhj6jb" path="res://src/ui/param_editor.tscn" id="2_fwkne"]
+[ext_resource type="Resource" uid="uid://k86mamnsfaml" path="res://data/default_preset.tres" id="3_4hsf3"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_67e8l"]
 content_margin_left = 8.0
@@ -37,7 +38,7 @@ stretch = true
 [node name="SubViewport" type="SubViewport" parent="VBoxContainer/SubViewportContainer"]
 disable_3d = true
 handle_input_locally = false
-size = Vector2i(1920, 896)
+size = Vector2i(1920, 899)
 render_target_update_mode = 4
 
 [node name="Camera2D" type="Camera2D" parent="VBoxContainer/SubViewportContainer/SubViewport"]
@@ -47,29 +48,59 @@ zoom = Vector2(2, 2)
 [node name="Lizard" parent="VBoxContainer/SubViewportContainer/SubViewport" instance=ExtResource("2_0mgcl")]
 unique_name_in_owner = true
 position = Vector2(904, 560)
-debug = true
-keyboard_control = true
+preset = ExtResource("3_4hsf3")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="PanelContainer4" type="PanelContainer" parent="VBoxContainer/HBoxContainer"]
+[node name="PresetPanelContainer" type="PanelContainer" parent="VBoxContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.5
+theme_override_styles/panel = SubResource("StyleBoxFlat_67e8l")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/VBoxContainer/HBoxContainer/PresetPanelContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/VBoxContainer/HBoxContainer/PresetPanelContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="SaveButton" type="Button" parent="VBoxContainer/VBoxContainer/HBoxContainer/PresetPanelContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Save"
+
+[node name="SaveLineEdit" type="LineEdit" parent="VBoxContainer/VBoxContainer/HBoxContainer/PresetPanelContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "Type to Save"
+
+[node name="PresetOptions" type="OptionButton" parent="VBoxContainer/VBoxContainer/HBoxContainer/PresetPanelContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="PanelContainer4" type="PanelContainer" parent="VBoxContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_styles/panel = SubResource("StyleBoxFlat_67e8l")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/HBoxContainer/PanelContainer4"]
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/VBoxContainer/HBoxContainer/PanelContainer4"]
 layout_mode = 2
 
-[node name="JointCountParamEditor" parent="VBoxContainer/HBoxContainer/PanelContainer4/VBoxContainer" groups=["param_editor"] instance=ExtResource("2_fwkne")]
+[node name="JointCountParamEditor" parent="VBoxContainer/VBoxContainer/HBoxContainer/PanelContainer4/VBoxContainer" groups=["param_editor"] instance=ExtResource("2_fwkne")]
 layout_mode = 2
 param_name = "m_joint_count"
 min = 1.0
 max = 10.0
 should_trigger_arm_compute = true
 
-[node name="ArmLen1ParamEditor" parent="VBoxContainer/HBoxContainer/PanelContainer4/VBoxContainer" groups=["param_editor"] instance=ExtResource("2_fwkne")]
+[node name="ArmLen1ParamEditor" parent="VBoxContainer/VBoxContainer/HBoxContainer/PanelContainer4/VBoxContainer" groups=["param_editor"] instance=ExtResource("2_fwkne")]
 layout_mode = 2
 param_name = "m_arm_length1"
 min = 1.0
@@ -77,7 +108,7 @@ max = 52.0
 step = 0.1
 should_trigger_arm_compute = true
 
-[node name="ArmLen2ParamEditor" parent="VBoxContainer/HBoxContainer/PanelContainer4/VBoxContainer" groups=["param_editor"] instance=ExtResource("2_fwkne")]
+[node name="ArmLen2ParamEditor" parent="VBoxContainer/VBoxContainer/HBoxContainer/PanelContainer4/VBoxContainer" groups=["param_editor"] instance=ExtResource("2_fwkne")]
 layout_mode = 2
 param_name = "m_arm_length2"
 min = 1.0
@@ -85,72 +116,75 @@ max = 36.0
 step = 0.1
 should_trigger_arm_compute = true
 
-[node name="PanelContainer" type="PanelContainer" parent="VBoxContainer/HBoxContainer"]
+[node name="PanelContainer" type="PanelContainer" parent="VBoxContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_styles/panel = SubResource("StyleBoxFlat_67e8l")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/HBoxContainer/PanelContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/VBoxContainer/HBoxContainer/PanelContainer"]
 layout_mode = 2
 
-[node name="BodyIndex1ParamEditor" parent="VBoxContainer/HBoxContainer/PanelContainer/VBoxContainer" groups=["param_editor"] instance=ExtResource("2_fwkne")]
+[node name="BodyIndex1ParamEditor" parent="VBoxContainer/VBoxContainer/HBoxContainer/PanelContainer/VBoxContainer" groups=["param_editor"] instance=ExtResource("2_fwkne")]
 layout_mode = 2
 param_name = "m_body_index1"
 max = 13.0
 
-[node name="BodyIndex2ParamEditor" parent="VBoxContainer/HBoxContainer/PanelContainer/VBoxContainer" groups=["param_editor"] instance=ExtResource("2_fwkne")]
+[node name="BodyIndex2ParamEditor" parent="VBoxContainer/VBoxContainer/HBoxContainer/PanelContainer/VBoxContainer" groups=["param_editor"] instance=ExtResource("2_fwkne")]
 layout_mode = 2
 param_name = "m_body_index2"
 max = 13.0
 
-[node name="PanelContainer2" type="PanelContainer" parent="VBoxContainer/HBoxContainer"]
+[node name="PanelContainer2" type="PanelContainer" parent="VBoxContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_styles/panel = SubResource("StyleBoxFlat_67e8l")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/HBoxContainer/PanelContainer2"]
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/VBoxContainer/HBoxContainer/PanelContainer2"]
 layout_mode = 2
 
-[node name="DistThresParamEditor" parent="VBoxContainer/HBoxContainer/PanelContainer2/VBoxContainer" groups=["param_editor"] instance=ExtResource("2_fwkne")]
+[node name="DistThresParamEditor" parent="VBoxContainer/VBoxContainer/HBoxContainer/PanelContainer2/VBoxContainer" groups=["param_editor"] instance=ExtResource("2_fwkne")]
 layout_mode = 2
 param_name = "m_distance_thres"
 max = 200.0
 step = 0.1
 
-[node name="Angle1ParamEditor3" parent="VBoxContainer/HBoxContainer/PanelContainer2/VBoxContainer" groups=["param_editor"] instance=ExtResource("2_fwkne")]
+[node name="Angle1ParamEditor3" parent="VBoxContainer/VBoxContainer/HBoxContainer/PanelContainer2/VBoxContainer" groups=["param_editor"] instance=ExtResource("2_fwkne")]
 layout_mode = 2
 param_name = "m_angle1"
 max = 6.283
 step = 0.001
 
-[node name="Angle2ParamEditor" parent="VBoxContainer/HBoxContainer/PanelContainer2/VBoxContainer" groups=["param_editor"] instance=ExtResource("2_fwkne")]
+[node name="Angle2ParamEditor" parent="VBoxContainer/VBoxContainer/HBoxContainer/PanelContainer2/VBoxContainer" groups=["param_editor"] instance=ExtResource("2_fwkne")]
 layout_mode = 2
 param_name = "m_angle2"
 max = 6.283
 step = 0.001
 
-[node name="PanelContainer3" type="PanelContainer" parent="VBoxContainer/HBoxContainer"]
+[node name="PanelContainer3" type="PanelContainer" parent="VBoxContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_styles/panel = SubResource("StyleBoxFlat_67e8l")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/HBoxContainer/PanelContainer3"]
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/VBoxContainer/HBoxContainer/PanelContainer3"]
 layout_mode = 2
 
-[node name="LenOffsetDesiredParamEditor" parent="VBoxContainer/HBoxContainer/PanelContainer3/VBoxContainer" groups=["param_editor"] instance=ExtResource("2_fwkne")]
+[node name="LenOffsetDesiredParamEditor" parent="VBoxContainer/VBoxContainer/HBoxContainer/PanelContainer3/VBoxContainer" groups=["param_editor"] instance=ExtResource("2_fwkne")]
 layout_mode = 2
 param_name = "m_len_offset_desired"
 min = -100.0
 step = 0.1
 
-[node name="LenOffsetEndParamEditor" parent="VBoxContainer/HBoxContainer/PanelContainer3/VBoxContainer" groups=["param_editor"] instance=ExtResource("2_fwkne")]
+[node name="LenOffsetEndParamEditor" parent="VBoxContainer/VBoxContainer/HBoxContainer/PanelContainer3/VBoxContainer" groups=["param_editor"] instance=ExtResource("2_fwkne")]
 layout_mode = 2
 param_name = "m_len_offset_end"
 min = -100.0
 step = 0.1
 
-[node name="FabrikLerpEndParamEditor3" parent="VBoxContainer/HBoxContainer/PanelContainer3/VBoxContainer" groups=["param_editor"] instance=ExtResource("2_fwkne")]
+[node name="FabrikLerpEndParamEditor3" parent="VBoxContainer/VBoxContainer/HBoxContainer/PanelContainer3/VBoxContainer" groups=["param_editor"] instance=ExtResource("2_fwkne")]
 layout_mode = 2
 param_name = "m_fabrik_lerp_weight"
 max = 1.0
 step = 0.001
+
+[connection signal="button_up" from="VBoxContainer/VBoxContainer/HBoxContainer/PresetPanelContainer/VBoxContainer/HBoxContainer/SaveButton" to="." method="_on_save_button_button_up"]
+[connection signal="item_selected" from="VBoxContainer/VBoxContainer/HBoxContainer/PresetPanelContainer/VBoxContainer/PresetOptions" to="." method="_on_preset_options_item_selected"]
