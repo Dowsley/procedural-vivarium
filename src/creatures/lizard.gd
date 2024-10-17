@@ -1,14 +1,18 @@
 extends Creature
 class_name Lizard
 
+
 enum ControlMode {
 	INFINITE_STROLL,
 	KEYBOARD_CONTROL,
 	FOLLOW_MOUSE,
 }
 
+const ARM_DIST_TO_BODY_CORRECTION := 0.7
+
 @export var debug := false
 @export var control_mode: ControlMode
+@export var preset: Preset
 
 @onready var arms: Array[Chain] = [
 	$Arm1,
@@ -16,11 +20,9 @@ enum ControlMode {
 	$Arm3,
 	$Arm4,
 ]
+
 var arms_desired: Array[Vector2] = []
-
 var active := true
-
-@export var preset: Preset
 
 
 func _ready() -> void:
@@ -73,6 +75,7 @@ func _process(delta: float) -> void:
 			arms[i].points[0].lerp(arms_desired[i], get_param("m_fabrik_lerp_weight")),
 			end_pos
 		)
+
 	queue_redraw()
 
 
@@ -87,10 +90,50 @@ func _draw() -> void:
 func initialize_arms() -> void:
 	arms_desired.clear()
 	arms_desired.resize(4)
-	for i in range(4):
+	for i in range(arms.size()):
 		arms_desired[i] = Vector2.ZERO
 		var arm_length: int = get_param("m_arm_length1") if i < 2 else get_param("m_arm_length2")
 		arms[i].initialize(get_param("m_joint_count"), arm_length)
+		
+
+#func initialize_arms() -> void:
+	#arms_desired.clear()
+	#arms_desired.resize(4)
+	#for i in range(arms.size()):
+		#var arm_length: int = get_param("m_arm_length1") if i < 2 else get_param("m_arm_length2")
+		#arms[i].initialize(get_param("m_joint_count"), arm_length)
+#
+		## Compute side (1 for right arms, -1 for left arms)
+		#var side := 1 if i % 2 == 0 else -1
+		#var body_index: int = get_param("m_body_index1") if i < 2 else get_param("m_body_index2")
+		#var angle: float = get_param("m_angle1") if i < 2 else get_param("m_angle2")
+		#var angle_offset := angle * side
+		#
+		## Compute desired position
+		#var desired_pos := Vector2(
+			#get_pos_x(body_index, angle_offset, get_param("m_len_offset_desired")),
+			#get_pos_y(body_index, angle_offset, get_param("m_len_offset_desired"))
+		#)
+#
+		## Compute end position
+		#var end_angle_offset := (PI / 2 * side)
+		#var end_pos := Vector2(
+			#get_pos_x(body_index, end_angle_offset, get_param("m_len_offset_end")),
+			#get_pos_y(body_index, end_angle_offset, get_param("m_len_offset_end"))
+		#)
+#
+		#if side == 1:
+			## Right arms start at the end position
+			#arms_desired[i] = end_pos
+			## Initialize all points of the arm to the end position
+			#for j in range(arms[i].points.size()):
+				#arms[i].points[j] = end_pos
+		#else:
+			## Left arms start at the desired position
+			#arms_desired[i] = desired_pos
+			## Initialize all points of the arm to the desired position
+			#for j in range(arms[i].points.size()):
+				#arms[i].points[j] = desired_pos
 
 
 func set_param(key: String, val) -> bool:
@@ -103,6 +146,22 @@ func set_param(key: String, val) -> bool:
 func get_param(key: String):
 	assert(preset.params.has(key), "Invalid key: " + String(key))
 	return preset.params[key]
+
+
+#func get_pos_x(i: int, angle_offset: float, length_offset: float) -> float:
+	#var num_points := spine.points.size()
+	#var t := float(i) / float(num_points - 1)
+	#var width_factor := spine.width_curve.sample(t)
+	#var width_at_i := spine.width * width_factor * ARM_DIST_TO_BODY_CORRECTION
+	#return spine.points[i].x + cos(spine.angles[i] + angle_offset) * (width_at_i + length_offset)
+#
+#
+#func get_pos_y(i: int, angle_offset: float, length_offset: float) -> float:
+	#var num_points := spine.points.size()
+	#var t := float(i) / float(num_points - 1)
+	#var width_factor := spine.width_curve.sample(t)
+	#var width_at_i := spine.width * width_factor * ARM_DIST_TO_BODY_CORRECTION
+	#return spine.points[i].y + sin(spine.angles[i] + angle_offset) * (width_at_i + length_offset)
 
 
 func get_pos_x(i: int, angle_offset: float, length_offset: float) -> float:

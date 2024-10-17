@@ -2,6 +2,8 @@ extends Node2D
 class_name Creature
 
 
+const CLOSE_ENOUGH_TO_MOUSE_RADIUS := 10
+
 @onready var spine: Chain = $Spine
 @onready var left_eye: Eye = $LeftEye
 @onready var right_eye: Eye = $RightEye
@@ -17,9 +19,9 @@ class_name Creature
 @export var move_speed := 100.0
 @export var accel_speed := 1.0
 
-const CLOSE_ENOUGH_TO_MOUSE_RADIUS := 10
 var velocity: Vector2
-var direction: Vector2 = Vector2.RIGHT
+var direction := Vector2.RIGHT
+
 
 func update_velocity_keyboard(delta: float, head_pos: Vector2) -> void:
 	var steering_input: float = Input.get_action_strength("steer_right") - Input.get_action_strength("steer_left")
