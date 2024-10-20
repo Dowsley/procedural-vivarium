@@ -16,8 +16,9 @@ const CLOSE_ENOUGH_TO_MOUSE_RADIUS := 10
 @export_category("Behaviour and Appearance")
 @export var eye_size := 4
 @export var eye_color := Color.WHITE
-@export var move_speed := 100.0
-@export var accel_speed := 1.0
+@export var max_move_speed := 500.0
+
+var move_speed := 100.0
 
 var velocity: Vector2
 var direction := Vector2.RIGHT
@@ -25,9 +26,6 @@ var direction := Vector2.RIGHT
 
 func update_velocity_keyboard(delta: float, head_pos: Vector2) -> void:
 	var steering_input: float = Input.get_action_strength("steer_right") - Input.get_action_strength("steer_left")
-	var accel_input: float = Input.get_action_strength("accel") - Input.get_action_strength("deaccel")
-	move_speed += accel_speed * accel_input
-
 	if steering_input != 0:
 		var rotation_angle: float = steering_input * deg_to_rad(90) * delta
 		direction = direction.rotated(rotation_angle).normalized()

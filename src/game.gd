@@ -6,6 +6,8 @@ extends Control
 @onready var preset_options := %PresetOptions
 @onready var save_button := %SaveButton
 @onready var save_line_edit := %SaveLineEdit
+@onready var active_check_box := %ActiveCheckBox
+@onready var speed_hslider := %SpeedHSlider
 
 var preset_names: Array[StringName] = []
 
@@ -15,6 +17,10 @@ const PATH_PREFIX := "res://data/"
 func _ready() -> void:
 	init_lizards()
 	load_all_preset_names()
+	active_check_box.button_pressed = lizard.active
+	speed_hslider.min_value = 0 
+	speed_hslider.max_value = lizard.max_move_speed
+	speed_hslider.value = lizard.move_speed
 
 
 func _process(_delta: float) -> void:
@@ -77,3 +83,11 @@ func _on_preset_options_item_selected(index: int) -> void:
 	lizard.preset = ResourceLoader.load(build_preset_path(preset_names[index]))
 	for node: ParamEditor in get_tree().get_nodes_in_group("param_editor"):
 		node.init(lizard)
+
+
+func _on_active_check_box_pressed() -> void:
+	lizard.active = active_check_box.button_pressed
+
+
+func _on_speed_h_slider_value_changed(value: float) -> void:
+	lizard.move_speed = value

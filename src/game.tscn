@@ -38,7 +38,7 @@ stretch = true
 [node name="SubViewport" type="SubViewport" parent="VBoxContainer/SubViewportContainer"]
 disable_3d = true
 handle_input_locally = false
-size = Vector2i(1920, 899)
+size = Vector2i(1920, 855)
 render_target_update_mode = 4
 
 [node name="Camera2D" type="Camera2D" parent="VBoxContainer/SubViewportContainer/SubViewport"]
@@ -53,6 +53,39 @@ preset = ExtResource("3_4hsf3")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
+
+[node name="PanelContainer4" type="PanelContainer" parent="VBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_67e8l")
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer/VBoxContainer/PanelContainer4"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = 20
+
+[node name="Label2" type="Label" parent="VBoxContainer/VBoxContainer/PanelContainer4/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Active:"
+
+[node name="ActiveCheckBox" type="CheckBox" parent="VBoxContainer/VBoxContainer/PanelContainer4/HBoxContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="VSeparator" type="VSeparator" parent="VBoxContainer/VBoxContainer/PanelContainer4/HBoxContainer2"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/VBoxContainer/PanelContainer4/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Creature speed:"
+
+[node name="SpeedHSlider" type="HSlider" parent="VBoxContainer/VBoxContainer/PanelContainer4/HBoxContainer2"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/VBoxContainer"]
 layout_mode = 2
@@ -187,5 +220,7 @@ param_name = "m_fabrik_lerp_weight"
 max = 1.0
 step = 0.001
 
+[connection signal="pressed" from="VBoxContainer/VBoxContainer/PanelContainer4/HBoxContainer2/ActiveCheckBox" to="." method="_on_active_check_box_pressed"]
+[connection signal="value_changed" from="VBoxContainer/VBoxContainer/PanelContainer4/HBoxContainer2/SpeedHSlider" to="." method="_on_speed_h_slider_value_changed"]
 [connection signal="button_up" from="VBoxContainer/VBoxContainer/HBoxContainer/PresetPanelContainer/VBoxContainer/HBoxContainer/SaveButton" to="." method="_on_save_button_button_up"]
 [connection signal="item_selected" from="VBoxContainer/VBoxContainer/HBoxContainer/PresetPanelContainer/VBoxContainer/PresetOptions" to="." method="_on_preset_options_item_selected"]

@@ -154,8 +154,8 @@ func get_param(key: String):
 	#var width_factor := spine.width_curve.sample(t)
 	#var width_at_i := spine.width * width_factor * ARM_DIST_TO_BODY_CORRECTION
 	#return spine.points[i].x + cos(spine.angles[i] + angle_offset) * (width_at_i + length_offset)
-#
-#
+
+
 #func get_pos_y(i: int, angle_offset: float, length_offset: float) -> float:
 	#var num_points := spine.points.size()
 	#var t := float(i) / float(num_points - 1)
