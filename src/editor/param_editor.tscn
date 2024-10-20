@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://drgfdoyqhj6jb"]
 
-[ext_resource type="Script" path="res://src/ui/param_editor.gd" id="1_tmfp5"]
+[ext_resource type="Script" path="res://src/editor/param_editor.gd" id="1_tmfp5"]
 
 [node name="ParamEditor" type="VBoxContainer"]
 offset_right = 184.0

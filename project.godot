@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Procedural Vivarium"
-run/main_scene="res://src/game.tscn"
+run/main_scene="res://src/editor/lizard_editor.tscn"
 config/features=PackedStringArray("4.3", "GL Compatibility")
 config/icon="res://assets/maybe_new_icon.png"
 
